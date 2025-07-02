@@ -23,35 +23,34 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            padding: 15px 20px;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             flex-wrap: wrap;
         }
         .logo {
             display: flex;
             align-items: center;
-            font-size: 22px;
+            font-size: 20px;
             color: black;
         }
         body.dark-mode .logo {
             color: white;
         }
         .logo i {
-            font-size: 28px;
-            margin-right: 10px;
+            font-size: 26px;
+            margin-right: 8px;
         }
         .navbar {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
             flex-wrap: wrap;
         }
         .navbar a {
             color: #fff;
             text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 25px;
+            padding: 8px 15px;
+            border-radius: 20px;
             background: rgba(255,255,255,0.2);
             transition: background 0.3s, transform 0.2s;
             cursor: pointer;
@@ -71,7 +70,7 @@
             top: 100%;
             left: 0;
             background-color: rgba(255, 255, 255, 0.95);
-            min-width: 160px;
+            min-width: 150px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 10px;
@@ -81,11 +80,10 @@
         }
         .dropdown-content a {
             color: #333;
-            padding: 12px 16px;
+            padding: 10px 12px;
             display: block;
             text-decoration: none;
             transition: background 0.3s;
-            background: transparent;
         }
         .dropdown-content a:hover {
             background-color: #ddd;
@@ -98,7 +96,7 @@
         .audio-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .audio-dropdown {
             position: relative;
@@ -110,7 +108,7 @@
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 6px;
+            padding: 4px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 10px;
@@ -122,49 +120,41 @@
             writing-mode: bt-lr;
             -webkit-appearance: slider-vertical;
             width: 4px;
-            height: 40px;
+            height: 35px;
             border-radius: 5px;
             background: #ccc;
             outline: none;
-            transition: background 0.3s;
-        }
-        .audio-dropdown-content input[type=range]:hover {
-            background: #aaa;
         }
         .audio-dropdown:hover .audio-dropdown-content {
             display: flex;
         }
-        .audio-controls button, .dark-mode-toggle {
+        .audio-controls button, .dark-mode-toggle, .menu-toggle {
             background: rgba(255,255,255,0.2);
             color: #fff;
             border: none;
-            padding: 10px 12px;
+            padding: 8px 10px;
             border-radius: 50%;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
         }
-        .audio-controls button:hover, .dark-mode-toggle:hover {
+        .audio-controls button:hover, .dark-mode-toggle:hover, .menu-toggle:hover {
             background: rgba(255,255,255,0.4);
             transform: scale(1.1);
         }
-        .dark-mode-toggle {
-            border-radius: 50%;
-            padding: 10px 12px;
-            min-width: unset;
-        }
         .auth-buttons {
             display: flex;
-            gap: 10px;
-            margin-left: 15px;
+            gap: 6px;
+            margin-left: 10px;
         }
         .auth-btn {
             color: #fff;
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 25px;
+            padding: 6px 12px;
+            border-radius: 20px;
             background: rgba(255,255,255,0.2);
             transition: background 0.3s, transform 0.2s;
             cursor: pointer;
+            font-size: 14px;
         }
         .auth-btn:hover {
             background: rgba(255, 255, 255, 0.4);
@@ -172,39 +162,35 @@
         }
         .main-content {
             text-align: center;
-            margin-top: 120px;
-            font-size: 36px;
+            margin-top: 100px;
+            font-size: 30px;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-            animation: fadeIn 1.5s ease;
         }
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.3);
             color: #fff;
-            margin-top: 60px;
-            font-size: 14px;
+            margin-top: 40px;
+            font-size: 13px;
         }
         body.dark-mode .footer {
             background: rgba(255, 255, 255, 0.1);
             color: #ddd;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+
         @media (max-width: 768px) {
             .navbar {
                 display: none;
                 flex-direction: column;
-                gap: 10px;
-                background: rgba(0,0,0,0.8);
+                gap: 8px;
+                background: rgba(0,0,0,0.85);
                 padding: 10px;
                 border-radius: 10px;
                 position: absolute;
                 top: 60px;
-                left: 15px;
+                left: 10px;
                 z-index: 2;
             }
             .navbar.show {
@@ -212,18 +198,6 @@
             }
             .menu-toggle {
                 display: block;
-                background: rgba(255,255,255,0.2);
-                color: #fff;
-                border: none;
-                padding: 10px 12px;
-                border-radius: 50%;
-                cursor: pointer;
-                transition: background 0.3s, transform 0.2s;
-                margin-left: 15px;
-            }
-            .menu-toggle:hover {
-                background: rgba(255,255,255,0.4);
-                transform: scale(1.1);
             }
         }
         @media (min-width: 769px) {
@@ -314,7 +288,7 @@
             <div class="audio-dropdown">
                 <button id="toggle-btn" onclick="toggleMusic()"><i id="music-icon" class="fas fa-volume-up"></i></button>
                 <div class="audio-dropdown-content">
-                    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this.value)">
+                    <input type="range" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this.value)">
                 </div>
             </div>
             <button id="dark-mode-btn" class="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
