@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiauStudy - Trang chủ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #fff;
+            transition: background 0.5s, color 0.5s;
+        }
+        body.dark-mode {
+            background: #222;
+            color: #ddd;
+        }
+        .header {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            color: black;
+        }
+        body.dark-mode .logo {
+            color: white;
+        }
+        .logo i {
+            font-size: 28px;
+            margin-right: 10px;
+        }
+        .navbar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.2);
+            transition: background 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+            transition: background 0.3s;
+            background: transparent;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .audio-dropdown {
+            position: relative;
+        }
+        .audio-dropdown-content {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 110%;
+            right: 50%;
+            transform: translateX(50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            display: none;
+        }
+        .audio-dropdown-content input[type=range] {
+            writing-mode: bt-lr;
+            -webkit-appearance: slider-vertical;
+            width: 5px;
+            height: 50px;
+            border-radius: 5px;
+            background: #ccc;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .audio-dropdown-content input[type=range]:hover {
+            background: #aaa;
+        }
+        .audio-dropdown:hover .audio-dropdown-content {
+            display: flex;
+        }
+        .audio-controls button, .dark-mode-toggle {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .audio-controls button:hover, .dark-mode-toggle:hover {
+            background: rgba(255,255,255,0.4);
+            transform: scale(1.1);
+        }
+        .dark-mode-toggle {
+            border-radius: 50%;
+            padding: 10px 12px;
+            min-width: unset;
+        }
+        .main-content {
+            text-align: center;
+            margin-top: 120px;
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            animation: fadeIn 1.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar {
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            .main-content {
+                font-size: 28px;
+                margin-top: 80px;
+            }
+        }
+    </style>
+    <script>
+        let isPlaying = false;
+
+        function toggleMusic() {
+            const music = document.getElementById('background-music');
+            const icon = document.getElementById('music-icon');
+            if (isPlaying) {
+                music.pause();
+                icon.className = 'fas fa-volume-mute';
+            } else {
+                music.play();
+                icon.className = 'fas fa-volume-up';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function changeVolume(value) {
+            const music = document.getElementById('background-music');
+            music.volume = value;
+        }
+
+        function reloadPage() {
+            location.reload();
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('dark-mode-btn');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                btn.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-book"></i>
+            <strong>GiauStudy</strong>
+        </div>
+        <div class="navbar">
+            <a href="#" onclick="reloadPage()">Trang chủ</a>
+            <div class="dropdown">
+                <a href="#">Tin tức</a>
+                <div class="dropdown-content">
+                    <a href="#">Trong nước</a>
+                    <a href="#">Quốc tế</a>
+                </div>
+            </div>
+            <a href="#">Ưu đãi</a>
+            <div class="dropdown">
+                <a href="#">Giới thiệu</a>
+                <div class="dropdown-content">
+                    <a href="#">Học sinh</a>
+                    <a href="#">Giáo viên</a>
+                    <a href="#">Phụ huynh</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">Liên hệ</a>
+                <div class="dropdown-content">
+                    <a href="#">Số điện thoại</a>
+                    <a href="#">Zalo</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="audio-controls">
+            <div class="audio-dropdown">
+                <button id="toggle-btn" onclick="toggleMusic()"><i id="music-icon" class="fas fa-volume-up"></i></button>
+                <div class="audio-dropdown-content">
+                    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this.value)">
+                </div>
+            </div>
+            <button id="dark-mode-btn" class="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        Chào mừng đến với <strong>GiauStudy</strong>
+    </div>
+
+    <audio id="background-music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_44c6e4db6c.mp3?filename=shape-of-you-ed-sheeran-cover-15313.mp3" loop></audio>
+</body>
+</html>
