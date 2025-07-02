@@ -104,7 +104,6 @@
             position: relative;
         }
         .audio-dropdown-content {
-            display: flex;
             justify-content: center;
             position: absolute;
             top: 110%;
@@ -116,12 +115,14 @@
             z-index: 1;
             border-radius: 10px;
             display: none;
+            flex-direction: column;
+            align-items: center;
         }
         .audio-dropdown-content input[type=range] {
             writing-mode: bt-lr;
             -webkit-appearance: slider-vertical;
-            width: 5px;
-            height: 50px;
+            width: 4px;
+            height: 40px;
             border-radius: 5px;
             background: #ccc;
             outline: none;
@@ -159,6 +160,18 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
             animation: fadeIn 1.5s ease;
         }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+        body.dark-mode .footer {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ddd;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -169,13 +182,19 @@
                 align-items: flex-start;
             }
             .navbar {
-                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: flex-start;
                 gap: 10px;
                 margin-top: 10px;
             }
             .main-content {
                 font-size: 28px;
                 margin-top: 80px;
+                padding: 0 15px;
+                text-align: left;
+            }
+            .audio-controls {
+                margin-top: 10px;
             }
         }
     </style>
@@ -262,6 +281,10 @@
 
     <div class="main-content">
         Chào mừng đến với <strong>GiauStudy</strong>
+    </div>
+
+    <div class="footer">
+        © 2025 GiauStudy. Mọi quyền được bảo lưu. | Liên hệ: info@giaustudy.vn
     </div>
 
     <audio id="background-music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_44c6e4db6c.mp3?filename=shape-of-you-ed-sheeran-cover-15313.mp3" loop></audio>
